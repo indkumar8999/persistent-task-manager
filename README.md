@@ -1,6 +1,6 @@
 ## Task Manager Lite Version with Persistence
 
-# Run the following command to create the grpc service and the go structs from proto
+### Run the following command to create the grpc service and the go structs from proto
 cd service/
 
 
