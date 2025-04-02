@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package task;
+
+option go_package = "taskpb/";
+
+service TaskService {
+  rpc CreateTask(CreateTaskRequest) returns (TaskResponse);
+  rpc UpdateTask(UpdateTaskRequest) returns (TaskResponse);
+  rpc GetTask(GetTaskRequest) returns (TaskResponse);
+  rpc CompleteTask(CompleteTaskRequest) returns (TaskResponse);
+  rpc LeaseTask(LeaseTaskRequest) returns (LeaseTaskResponse);
+  rpc GetUnLeasdTask(UnLeasedTaskRequest) returns (TaskResponse);
+}
+
+message UnLeasedTaskRequest{
+  
+}
+
+message LeaseTaskRequest {
+  string task_id = 1;
+  string owner = 2;
+}
+
+message LeaseTaskResponse {
+  string id = 1;
+  string task_id = 2;
+  string lease_end_time = 3;
+}
+
+message Task {
+  string id = 1;
+  string task_state = 2;
+  bytes data = 3;
+}
+
+message CreateTaskRequest {
+  string name = 1;
+  string description = 2;
+  bytes data = 3;
+}
+
+message UpdateTaskRequest {
+  string id = 1;
+  string task_state = 2;
+  bytes data = 3;
+}
+
+message GetTaskRequest {
+  string id = 1;
+}
+
+message CompleteTaskRequest {
+  string id = 1;
+}
+
+message TaskResponse {
+  Task task = 1;
+}
+
